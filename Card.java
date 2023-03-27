@@ -26,20 +26,21 @@ public class Card {
         int countPc = 0 , countPlayer = 0;
         //if player 3 card ,all are JQK
         for(int user : player){
-            if( user > 10 && user <= 13 ) countPc++;
-            if(countPc == 3) return "Player win";
+            if( user > 10 && user <= 13 ) countPlayer++;
         }
 
         //if pc 3 card, all are JQK
         for(int user : pc){
-            if(user > 10 && user <= 13 ) countPlayer++;
-            if(countPlayer == 3) return "PC win";
+            if(user > 10 && user <= 13 ) countPc++;
         }
 
-        //if player and pc both have 3 JQK
-        if(countPlayer == countPc) return "Draw";
+        //check J Q K
+        if(countPc == countPlayer && countPc == 3) return "Draw";
+        if(countPc == 3 && countPlayer < 3 ) return "PC win";
+        if(countPlayer == 3 && countPc < 3 ) return "User win";
 
-        if(sumPlayer > sumPc) return "Player win";
+        //check bigger card
+        if(sumPlayer > sumPc) return "User win";
         else if(sumPlayer < sumPc ) return "PC win";
         return "Draw";
     }
